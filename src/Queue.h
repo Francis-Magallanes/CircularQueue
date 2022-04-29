@@ -84,12 +84,12 @@ public:
         return -1;
     }
 
-    int find(const T &query, bool (*conditionStatement)(T,T))
+    int find(const T &query, bool (*comparison)(T,T))
     {
         // you want to stop the searching when it points outside the queue ( == tailIndex)
         for(int i = headIndex; i != tailIndex; i = ((i + 1) % sizeStorage))
         {
-            if(conditionStatement(storage[i],query))
+            if(comparison(storage[i],query))
             {
                 return ((i + sizeStorage) - headIndex) % sizeStorage;
             }
