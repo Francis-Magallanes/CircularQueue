@@ -49,7 +49,7 @@ public:
             storage[tailIndex] = item;
 
             //update the tailIndex to point the next free space
-            tailIndex = (tailIndex + 1 + sizeStorage) % sizeStorage;
+            tailIndex = (tailIndex + 1) % sizeStorage;
 
             return true;
         }
@@ -59,10 +59,10 @@ public:
 
     bool dequeue()
     {
-        if(size() == 0)
+        if(size() > 0)
         {
             //update the head index. This will remove the item in the queue
-            headIndex = (headIndex + 1 + sizeStorage) % sizeStorage;
+            headIndex = (headIndex + 1) % sizeStorage;
 
             return true;
         }
