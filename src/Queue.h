@@ -16,7 +16,7 @@ class Queue
 
 public:
     
-    Queue():headIndex(0), tailIndex(0),maxSizeQueue(sizeQueue + 1)
+    Queue():headIndex(0), tailIndex(0),sizeStorage(sizeQueue + 1)
     {
 
     }
@@ -28,7 +28,7 @@ public:
 
     T back()
     {
-        return storage[tailIndex];
+        return storage[tailIndex - 1];
     }
     
     bool isEmpty()
@@ -38,18 +38,18 @@ public:
 
     int size()
     {
-        return (((tailIndex - headIndex) + maxSizeQueue) % maxSizeQueue);
+        return (((tailIndex - headIndex) + sizeStorage) % sizeStorage);
     }
 
     bool enqueue(T item)
     {
-        if(size() < maxSizeQueue)
+        if(size() < sizeStorage)
         {
             //put the item at the tailIndex 
             storage[tailIndex] = item;
 
             //update the tailIndex to point the next free space
-            tailIndex = (tailIndex + 1 + maxSizeQueue) % maxSizeQueue;
+            tailIndex = (tailIndex + 1 + sizeStorage) % sizeStorage;
 
             return true;
         }
@@ -59,10 +59,10 @@ public:
 
     bool dequeue()
     {
-        if(size() < maxSizeQueue)
+        if(size() == 0)
         {
-            //update first the head index
-            headIndex = (headIndex + 1 + maxSizeQueue) % maxSizeQueue;
+            //update the head index. This will remove the item in the queue
+            headIndex = (headIndex + 1 + sizeStorage) % sizeStorage;
 
             return true;
         }
@@ -73,11 +73,11 @@ public:
     int find(const T &query)
     {
         // you want to stop the searching when it points outside the queue ( == tailIndex)
-        for(int i = headIndex; i != tailIndex; i = ((i + 1) % maxSizeQueue))
+        for(int i = headIndex; i != tailIndex; i = ((i + 1) % sizeStorage))
         {
             if(storage[i] == query)
             {
-                return ((i + maxSizeQueue) - headIndex) % maxSizeQueue;
+                return ((i + sizeStorage) - headIndex) % sizeStorage;
             }
         }
 
@@ -87,11 +87,11 @@ public:
     int find(const T &query, bool (*conditionStatement)(T,T))
     {
         // you want to stop the searching when it points outside the queue ( == tailIndex)
-        for(int i = headIndex; i != tailIndex; i = ((i + 1) % maxSizeQueue))
+        for(int i = headIndex; i != tailIndex; i = ((i + 1) % sizeStorage))
         {
             if(conditionStatement(storage[i],query))
             {
-                return ((i + maxSizeQueue) - headIndex) % maxSizeQueue;
+                return ((i + sizeStorage) - headIndex) % sizeStorage;
             }
         }
 
@@ -102,10 +102,10 @@ public:
     {
         if((size() > index + 1) && (index < 0))
         {
-            for(int i = headIndex + i; i != tailIndex - 1; i = ((i + 1) % maxSizeQueue))
+            for(int i = headIndex + i; i != tailIndex - 1; i = ((i + 1) % sizeStorage))
             {
                 //move the items
-                storage[i] = storage[((i + 1) % maxSizeQueue)];
+                storage[i] = storage[((i + 1) % sizeStorage)];
             }
 
             //update the tailIndex since there is deleted item
@@ -118,8 +118,17 @@ public:
     }
 
 private:
+
+    // "container" for the queue data structure
     T storage[sizeQueue + 1];
+
     int headIndex;
+
+    // this will point to the free space at end of queue where
+    // the next enqueue item will be placed
     int tailIndex;
-    int maxSizeQueue;
+
+    // this indicates the actual size of the storage (or the queue)
+    // On the other hand, sizeQueue indicates the size of queue
+    int sizeStorage;
 };
