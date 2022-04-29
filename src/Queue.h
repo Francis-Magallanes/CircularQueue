@@ -86,7 +86,7 @@ public:
      */
     bool enqueue(T item)
     {
-        if (size() < sizeStorage)
+        if (size() < sizeQueue)
         {
             // put the item at the tailIndex
             storage[tailIndex] = item;
