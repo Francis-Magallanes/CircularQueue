@@ -28,7 +28,7 @@ public:
 
     T back()
     {
-        return storage[tailIndex - 1];
+        return storage[((tailIndex - 1) + sizeStorage) % sizeStorage];
     }
     
     bool isEmpty()
@@ -77,7 +77,7 @@ public:
         {
             if(storage[i] == query)
             {
-                return ((i + sizeStorage) - headIndex) % sizeStorage;
+                return ((i - headIndex) + sizeStorage) % sizeStorage;
             }
         }
 
@@ -91,7 +91,7 @@ public:
         {
             if(comparison(storage[i],query))
             {
-                return ((i + sizeStorage) - headIndex) % sizeStorage;
+                return ((i - headIndex) + sizeStorage) % sizeStorage;
             }
         }
 
@@ -100,16 +100,19 @@ public:
 
     bool dequeueAt(int index)
     {
-        if((size() > index + 1) && (index < 0))
+        // index should not be negative and it should be less than the current size of queue
+        // this avoid the index out of bound error in the queue
+        if((size() > index) && (index < 0))
         {
-            for(int i = headIndex + i; i != tailIndex - 1; i = ((i + 1) % sizeStorage))
+            // this will move the items
+            for(int i = headIndex + i; i != ((tailIndex - 1) + sizeStorage) % sizeStorage; i = ((i + 1) % sizeStorage))
             {
-                //move the items
+                //move the item
                 storage[i] = storage[((i + 1) % sizeStorage)];
             }
 
-            //update the tailIndex since there is deleted item
-            tailIndex = tailIndex - 1;
+            //update the tailIndex since there is a deleted item
+            tailIndex = ((tailIndex - 1) + sizeStorage) % sizeStorage;
 
             return true;
         }
