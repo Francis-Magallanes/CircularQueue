@@ -16,8 +16,8 @@
  * has the capability of accomodating different data types whether it
  * is primitive or user-defined.
  *
- * @tparam T - datatype of item the that the queue will be storing.
- * @tparam sizeQueue - maximum possible size of the queue through its usage.
+ * @tparam T datatype of item the that the queue will be storing.
+ * @tparam sizeQueue maximum possible size of the queue through its usage.
  */
 template <typename T, int sizeQueue>
 class Queue
@@ -35,7 +35,7 @@ public:
     /**
      * @brief It will return the first item of the queue.
      *
-     * @return T - first item of the queue
+     * @return T first item of the queue
      */
     T front()
     {
@@ -45,7 +45,7 @@ public:
     /**
      * @brief It will return the last item of the queue.
      *
-     * @return T - last item of the queue
+     * @return T last item of the queue
      */
     T back()
     {
@@ -55,8 +55,8 @@ public:
     /**
      * @brief It will indicate whether the queue is empty or not.
      *
-     * @return true - The queue is empty
-     * @return false - The queue is not empty
+     * @return true The queue is empty
+     * @return false The queue is not empty
      */
     bool isEmpty()
     {
@@ -67,7 +67,7 @@ public:
      * @brief It will return the amount of items that is being stored in the
      * queue.
      *
-     * @return int - amount of stored items in the queue.
+     * @return int amount of stored items in the queue.
      */
     int size()
     {
@@ -79,9 +79,9 @@ public:
      * also indicate whether the placement of the item in the queue
      * is sucessful.
      *
-     * @param item - the data that will stored in the queue.
-     * @return true - the data is succesfully placed in the queue.
-     * @return false - the data is not sucessfully placed in the queue because
+     * @param item the data that will stored in the queue.
+     * @return true the data is succesfully placed in the queue.
+     * @return false the data is not sucessfully placed in the queue because
      * the queue is full.
      */
     bool enqueue(T item)
@@ -105,8 +105,8 @@ public:
      * also indicate whether the placement of the item in the queue
      * is sucessful.
      *
-     * @return true - the first item of the queue is succesfully removed in the queue.
-     * @return false - no item is removed because the queue is empty.
+     * @return true the first item of the queue is succesfully removed in the queue.
+     * @return false no item is removed because the queue is empty.
      */
     bool dequeue()
     {
@@ -129,8 +129,8 @@ public:
      *
      * Note that the index starts at 0.
      *
-     * @param query - the item being searched in the queue.
-     * @return int - index where the item will be found. -1 means
+     * @param query the item being searched in the queue.
+     * @return int index where the item will be found. -1 means
      * doesn't find in the query in the queue.
      */
     int find(const T &query)
@@ -155,10 +155,10 @@ public:
      *
      * Note that the index starts at 0.
      *
-     * @param query - the item being searched in the queue.
-     * @param comparison - a function pointer that will compare the two T items whether it is
+     * @param query the item being searched in the queue.
+     * @param comparison a function pointer that will compare the two T items whether it is
      * equal or not. It should return true if the two items are equal.
-     * @return int - index where the item will be found. -1 means
+     * @return int index where the item will be found. -1 means
      * doesn't find in the query in the queue.
      */
     int find(const T &query, bool (*comparison)(T, T))
@@ -178,10 +178,10 @@ public:
     /**
      * @brief It will remove the item based on the inputted index
      *
-     * @param index - location of the item in the queue which will be deleted. Note
+     * @param index location of the item in the queue which will be deleted. Note
      * that the index starts at 0.
-     * @return true - the deletion is successful.
-     * @return false - the deletion is not successfull because the input index is not
+     * @return true the deletion is successful.
+     * @return false the deletion is not successfull because the input index is not
      * within the range of indices based on the current size of the queue.
      */
     bool dequeueAt(int index)
