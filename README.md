@@ -1,4 +1,4 @@
-# ArduinoQueue
+# CircularQueue
 ## By Francis John N. Magallaes
 
 This library implements Queue Data Structure for Arduino using statically allocated and fixed length array. Its implementation follows a circular buffer implementation which uses modulo arithmetic. Through statically allocated array, the chances of memeory fragmentation in the RAM of an arduino baord is greatly reduced. Also, you can have a better idea on how much the program uses the RAM when using this library since the buffer (or the array) is statically allocated rather than dynamically allocated (which will be determined during run time). For this to happen, the queue should not be declared using the "new" keyword. See the examples on how the library is being used and see the "Queue Data Structure" portion for overview of the implementation of the Queue data structure.
