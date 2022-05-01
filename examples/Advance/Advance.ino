@@ -28,7 +28,7 @@ public:
 
     }
 
-    bool operator == (const c_Person &anotherPerson)
+    bool operator == (const Person &anotherPerson)
     {
         return (this->FirstName == anotherPerson.FirstName) &&
                 (this->LastName == anotherPerson.LastName) &&
