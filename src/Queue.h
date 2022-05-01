@@ -127,7 +127,8 @@ public:
      * the query is not at the queue. Make sure that the type T can be compared
      * using "==" or else it will crash the program.
      *
-     * Note that the index starts at 0.
+     * Note that the index starts at 0. Also, it will return the first item statisfies the
+     * equality comparison. Thus, it will not return the indices for duplicate ite scenario.
      *
      * @param query the item being searched in the queue.
      * @return int index where the item will be found. -1 means
@@ -153,7 +154,8 @@ public:
      * comparison when finding the query in the queue. It will return the index where the
      * item will be found. If return value is -1, then the query is not at the queue.
      *
-     * Note that the index starts at 0.
+     * Note that the index starts at 0. Also, it will return the first item statisfies the
+     * equality comparison. Thus, it will not return the indices for duplicate ite scenario.
      *
      * @param query the item being searched in the queue.
      * @param comparison a function pointer that will compare the two T items whether it is
@@ -188,18 +190,32 @@ public:
     {
         // index should not be negative and it should be less than the current size of queue
         // this avoid the index out of bound error in the queue
-        if ((size() > index) && (index < 0))
+        if ((index < size()) && (index >= 0))
         {
-            // this will move the items
-            for (int i = headIndex + i; i != ((tailIndex - 1) + sizeStorage) % sizeStorage; i = ((i + 1) % sizeStorage))
+            //for the case that the item is at the start of the queue
+            if(index == 0)
             {
-                // move the item
-                storage[i] = storage[((i + 1) % sizeStorage)];
+                dequeue();
             }
+            //for the case that the item is at the end of the queue
+            else if(index == size() - 1)
+            {
+                tailIndex = ((tailIndex - 1) + sizeStorage) % sizeStorage;
+            }
+            //for the case that the item is at middle part of the queue
+            else
+            {
+                // this will move the items
+                for (int i = headIndex + index; i != ((tailIndex - 1) + sizeStorage) % sizeStorage; i = ((i + 1) % sizeStorage))
+                {
+                    // move the item
+                    storage[i] = storage[((i + 1) % sizeStorage)];
+                }
 
-            // update the tailIndex since there is a deleted item
-            tailIndex = ((tailIndex - 1) + sizeStorage) % sizeStorage;
-
+                // update the tailIndex since there is a deleted item
+                tailIndex = ((tailIndex - 1) + sizeStorage) % sizeStorage;
+            }
+           
             return true;
         }
 
