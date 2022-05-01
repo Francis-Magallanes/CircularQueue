@@ -35,7 +35,9 @@ public:
     }
 
     /**
-     * @brief It will return the first item of the queue.
+     * @brief It will return the first item of the queue.Note that
+     * there is no form of error handling used in this implementation so make sure
+     * that the queue is not empty.
      *
      * @return T first item of the queue
      */
