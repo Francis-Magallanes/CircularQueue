@@ -1,0 +1,8 @@
+Queue   KEYWORD1
+front   KEYWORD2
+isEmpty KEYWORD2
+size KEYWORD2
+enqueue KEYWORD2
+dequeue KEYWORD2
+find KEYWORD2
+dequeueAt KEYWORD2
