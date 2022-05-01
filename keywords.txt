@@ -1,0 +1,21 @@
+#######################################
+# Syntax Coloring Map For ArduinoQueue
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Queue	KEYWORD1
+ 
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+front	KEYWORD2
+isEmpty	KEYWORD2
+size	KEYWORD2
+enqueue	KEYWORD2
+dequeue	KEYWORD2
+find	KEYWORD2
+dequeueAt	KEYWORD2
