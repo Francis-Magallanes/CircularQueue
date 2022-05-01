@@ -9,5 +9,5 @@ This library is tested through the [AUnit](https://github.com/bxparks/AUnit) by 
 
 ### Issues and Feature Request
 
-If you found a bug, feel free to open an issue in this github repository. Make sure that you describe the bug as accurate as possible. If you have a feature request, feel free to open an issues in this repository. You can also make pull request for any feature enhancement for this library (feel free to do it).
+If you found a bug, feel free to open an issue in this github repository. Make sure that you describe the bug as accurate as possible. If you have any question, feel free to open an issue so that we can discuss it there. If you have a feature request, feel free to open an issues in this repository. You can also make pull request for any feature enhancement for this library (feel free to do it).
 
