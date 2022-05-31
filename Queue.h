@@ -47,6 +47,18 @@ public:
     }
 
     /**
+     * @brief It will return a pointer to the first item of the queue.Note that
+     * there is no form of error handling used in this implementation so make sure
+     * that the queue is not empty.
+     *
+     * @return T pointer to the first item of the queue
+     */
+    T* p_Front()
+    {
+        return &storage[headIndex];
+    }
+
+    /**
      * @brief It will return the last item of the queue.Note that
      * there is no form of error handling used in this implementation so make sure
      * that the queue is not empty.
@@ -56,6 +68,18 @@ public:
     T back()
     {
         return storage[((tailIndex - 1) + sizeStorage) % sizeStorage];
+    }
+
+    /**
+     * @brief It will return a pointer to the last item of the queue.Note that
+     * there is no form of error handling used in this implementation so make sure
+     * that the queue is not empty.
+     *
+     * @return T pointer to the last item of the queue
+     */
+    T* p_Back()
+    {
+        return &storage[((tailIndex - 1) + sizeStorage) % sizeStorage];
     }
 
     /**
@@ -70,6 +94,20 @@ public:
     T at(int index)
     {
         return storage[(headIndex + index) % sizeStorage];
+    }
+
+    /**
+     * @brief It will return the a pointer of the item found at the inputted index. Note that
+     * there is no form error handling used in this implementation so make sure
+     * that the index is valid.
+     * 
+     * @param index location of the target item in the queue. Note that
+     * that the index starts at zero.
+     * @return T* pointer to the item with type T that is located at the specified index
+     */
+    T* p_At(int index)
+    {
+        return &storage[(headIndex + index) % sizeStorage];
     }
 
     /**
